@@ -53,18 +53,18 @@ function App() {
       <div className="tab-content mt-4">
         {activeTab === 'coinCalculator' && (
           <div className="tab-pane active" id="coinCalculator">
-            <input type="number" value={investmentCoin} onChange={e => setInvestmentCoin(e.target.value)} placeholder="Enter amount" className="form-control mb-2" />
-            <input type="number" value={initialCoinValue} onChange={e => setInitialCoinValue(e.target.value)} placeholder="Enter value" className="form-control mb-2" />
-            <input type="number" value={futureCoinValue} onChange={e => setFutureCoinValue(e.target.value)} placeholder="Enter value" className="form-control mb-2" />
+            <input type="number" value={investmentCoin} onChange={e => setInvestmentCoin(e.target.value)} placeholder="Enter your amount for investment" className="form-control mb-2" />
+            <input type="number" value={initialCoinValue} onChange={e => setInitialCoinValue(e.target.value)} placeholder="Enter current value of coin" className="form-control mb-2" />
+            <input type="number" value={futureCoinValue} onChange={e => setFutureCoinValue(e.target.value)} placeholder="Enter future value of coin" className="form-control mb-2" />
             <div dangerouslySetInnerHTML={{ __html: calculateCoin() }} />
           </div>
         )}
         {activeTab === 'profitCalculator' && (
           <div className="tab-pane active" id="profitCalculator">
-            <input type="number" value={investmentProfit} onChange={e => setInvestmentProfit(e.target.value)} placeholder="Enter amount" className="form-control mb-2" />
+            <input type="number" value={investmentProfit} onChange={e => setInvestmentProfit(e.target.value)} placeholder="Enter your amount for investment" className="form-control mb-2" />
             <input type="number" value={coinAmount} onChange={e => setCoinAmount(e.target.value)} placeholder="
-Enter amount" className="form-control mb-2" />
-<input type="number" value={percentageGain} onChange={e => setPercentageGain(e.target.value)} placeholder="Enter percentage gain" className="form-control mb-2" />
+Enter current value of coin" className="form-control mb-2" />
+<input type="number" value={percentageGain} onChange={e => setPercentageGain(e.target.value)} placeholder="Enter future percentage of gain %" className="form-control mb-2" />
 <div dangerouslySetInnerHTML={{ __html: calculateProfit() }} />
 </div>
 )}
