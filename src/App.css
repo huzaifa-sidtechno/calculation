@@ -1,0 +1,44 @@
+/* App.css */
+.nav-tabs {
+    justify-content: center; /* Center the nav-tabs horizontally */
+    margin-bottom: 20px;
+    border-bottom: 2px solid #dee2e6;
+  }
+  
+  .nav-link {
+    color: #007bff;
+    border-radius: 0.25rem;
+    margin-right: 2px;
+    border: 1px solid transparent;
+  }
+  
+  .nav-link.active {
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff;
+  }
+  
+  .container {
+    max-width: 600px;
+    width: 50%; /* Ensure container is at least 50% of the parent width */
+    margin: 50px auto; /* Center the container */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    background-color: #fff;
+  }
+  
+  input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+  }
+  
+  /* Style for the output display */
+  .output {
+    text-align: center; /* Center the text of the output */
+    width: 100%; /* Make the output take full width of its parent */
+    margin-top: 20px; /* Add some spacing above the output */
+  }
+
