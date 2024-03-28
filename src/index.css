@@ -1,4 +1,6 @@
-body{
+
+body {
   width: 100% !important;
-  height:  100% !important;
+  height: 100vh !important;
+  background-color: #f8f9fa !important;
 }

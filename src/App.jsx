@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import RiskManagementCalculator from './RiskManagementCalculator';
 
 function App() {
   const [investmentCoin, setInvestmentCoin] = useState('');
@@ -35,17 +36,22 @@ function App() {
   };
 
   return (
-    <div className="container">
+    <div className="container mt-5" style={{ backgroundColor: '#f8f9fa', padding: '20px', borderRadius: '10px', boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)' }}>
       <h2 className="text-center mb-4">Profit Calculation</h2>
-      <ul className="nav nav-tabs">
+      <ul className="nav nav-tabs" style={{ backgroundColor: '#fff', borderRadius: '10px', boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)' }}>
         <li className="nav-item">
-          <a className={`nav-link ${activeTab === 'coinCalculator' ? 'active' : ''}`} onClick={() => setActiveTab('coinCalculator')}>
+          <a className={`nav-link ${activeTab === 'coinCalculator' ? 'active' : ''}`} style={{ cursor: 'pointer', color: activeTab === 'coinCalculator' ? '#fff' : '#007bff', backgroundColor: activeTab === 'coinCalculator' ? '#007bff' : 'transparent', borderRadius: '10px 0 0 0' }} onClick={() => setActiveTab('coinCalculator')}>
             Coin Calculator
           </a>
         </li>
         <li className="nav-item">
-          <a className={`nav-link ${activeTab === 'profitCalculator' ? 'active' : ''}`} onClick={() => setActiveTab('profitCalculator')}>
+          <a className={`nav-link ${activeTab === 'profitCalculator' ? 'active' : ''}`} style={{ cursor: 'pointer', color: activeTab === 'profitCalculator' ? '#fff' : '#007bff', backgroundColor: activeTab === 'profitCalculator' ? '#007bff' : 'transparent' }} onClick={() => setActiveTab('profitCalculator')}>
             Profit Calculator
+          </a>
+        </li>
+        <li className="nav-item">
+          <a className={`nav-link ${activeTab === 'RiskManagementCalculator' ? 'active' : ''}`} style={{ cursor: 'pointer', color: activeTab === 'RiskManagementCalculator' ? '#fff' : '#007bff', backgroundColor: activeTab === 'RiskManagementCalculator' ? '#007bff' : 'transparent', borderRadius: '0 10px 0 0' }} onClick={() => setActiveTab('RiskManagementCalculator')}>
+            Risk Management Calculator
           </a>
         </li>
       </ul>
@@ -62,15 +68,19 @@ function App() {
         {activeTab === 'profitCalculator' && (
           <div className="tab-pane active" id="profitCalculator">
             <input type="number" value={investmentProfit} onChange={e => setInvestmentProfit(e.target.value)} placeholder="Enter your amount for investment" className="form-control mb-2" />
-            <input type="number" value={coinAmount} onChange={e => setCoinAmount(e.target.value)} placeholder="
-Enter current value of coin" className="form-control mb-2" />
-<input type="number" value={percentageGain} onChange={e => setPercentageGain(e.target.value)} placeholder="Enter future percentage of gain %" className="form-control mb-2" />
-<div dangerouslySetInnerHTML={{ __html: calculateProfit() }} />
-</div>
-)}
-</div>
-</div>
-);
+            <input type="number" value={coinAmount} onChange={e => setCoinAmount(e.target.value)} placeholder="Enter current value of coin" className="form-control mb-2" />
+            <input type="number" value={percentageGain} onChange={e => setPercentageGain(e.target.value)} placeholder="Enter future percentage of gain %" className="form-control mb-2" />
+            <div dangerouslySetInnerHTML={{ __html: calculateProfit() }} />
+          </div>
+        )}
+        {activeTab === 'RiskManagementCalculator' && (
+          <div className="tab-pane active" id="RiskManagementCalculator">
+            <RiskManagementCalculator />
+          </div>
+        )}
+      </div>
+    </div>
+  );
 }
 
 export default App;
