@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crypto Trading Risk Management Calculator</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        /* Custom CSS for styling */
+        body {
+            background-color: #f8f9fa;
+        }
+        .container {
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            color: #007bff;
+        }
+        .form-group label {
+            font-weight: bold;
+            color: #6c757d;
+        }
+        .form-control {
+            border-color: #ced4da;
+        }
+        #positionSize, #riskRewardRatio, #totalRisked, #numberOfCoins {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+<div class="container mt-5">
+    <h2>Crypto Trading Risk Management Calculator</h2>
+    <div class="form-group">
+        <label for="accountSize">Account Size ($)</label>
+        <input type="number" class="form-control" id="accountSize" placeholder="Enter Account Size">
+    </div>
+    <div class="form-group">
+        <label for="riskPercentage">Risk Percentage (%)</label>
+        <input type="number" class="form-control" id="riskPercentage" placeholder="Enter Risk Percentage">
+    </div>
+    <div class="form-group">
+        <label for="entryPrice">Entry Price ($)</label>
+        <input type="number" class="form-control" id="entryPrice" placeholder="Enter Entry Price">
+    </div>
+    <div class="form-group">
+        <label for="stopLossPrice">Stop Loss Price ($)</label>
+        <input type="number" class="form-control" id="stopLossPrice" placeholder="Enter Stop Loss Price">
+    </div>
+    <div class="form-group">
+        <label for="takeProfitPrice">Take Profit Price ($)</label>
+        <input type="number" class="form-control" id="takeProfitPrice" placeholder="Enter Take Profit Price">
+    </div>
+    
+    <h4 class="mt-4">Results</h4>
+    <p id="positionSize">Position Size: </p>
+    <p id="riskRewardRatio">Risk/Reward Ratio: </p>
+    <p id="totalRisked">Total Capital Risked: </p>
+    <p id="numberOfCoins">Number of Coins to Buy: </p>
+    
+    <!-- Disabled Calculate Button -->
+    <!-- <button id="calculate" class="btn btn-primary mr-2">Calculate</button> -->
+    <button id="reset" class="btn btn-secondary">Reset</button>
+</div>
+
+<!-- jQuery and Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script>
+$(document).ready(function() {
+    // Function to calculate risk management
+    function calculateRiskManagement() {
+        // Input values
+        var accountSize = parseFloat($('#accountSize').val());
+        var riskPercentage = parseFloat($('#riskPercentage').val());
+        var entryPrice = parseFloat($('#entryPrice').val());
+        var stopLossPrice = parseFloat($('#stopLossPrice').val());
+        var takeProfitPrice = parseFloat($('#takeProfitPrice').val());
+        
+        // Validating input to prevent calculation errors
+        if(!isNaN(accountSize) && !isNaN(riskPercentage) && !isNaN(entryPrice) && !isNaN(stopLossPrice) && !isNaN(takeProfitPrice)) {
+            // Calculations
+            var accountRiskDollars = (accountSize * riskPercentage) / 100;
+            var tradeRiskPerCoin = entryPrice - stopLossPrice;
+            var positionSize = accountRiskDollars / tradeRiskPerCoin;
+            var potentialRewardPerCoin = takeProfitPrice - entryPrice;
+            var riskRewardRatio = potentialRewardPerCoin / tradeRiskPerCoin;
+            var totalRisked = accountRiskDollars;
+            var numberOfCoins = positionSize / entryPrice;
+            
+            // Update Results
+            $('#positionSize').text('Position Size: ' + positionSize.toFixed(2));
+            $('#riskRewardRatio').text('Risk/Reward Ratio: ' + riskRewardRatio.toFixed(2));
+            $('#totalRisked').text('Total Capital Risked: $' + totalRisked.toFixed(2));
+            $('#numberOfCoins').text('Number of Coins to Buy: ' + numberOfCoins.toFixed(2));
+        }
+    }
+    
+    
+    // Reset form on button click
+    $('#reset').click(function() {
+        $('input').val('');
+        $('#positionSize, #riskRewardRatio, #totalRisked, #numberOfCoins').text('');
+    });
+    
+    // Calculate risk management on keyup event
+    $('input').keyup(function() {
+        calculateRiskManagement();
+    });
+});
+</script>
+</body>
+</html>
