@@ -92,7 +92,6 @@ function RiskManagementCalculator() {
       <p id="riskRewardRatio">{results.riskRewardRatio}</p>
       <p id="totalRisked">{results.totalRisked}</p>
       <p id="numberOfCoins">{results.numberOfCoins}</p>
-      
       <button className="btn btn-secondary" onClick={handleReset}>Reset</button>
     </div>
   );
